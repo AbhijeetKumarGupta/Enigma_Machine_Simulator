@@ -1,33 +1,30 @@
 import { useEffect, useState } from "react";
 import { Alphabets, KeysList, NextKeys, RotorKeys, RotorOne, RotorThree, RotorTwo } from "../helper";
+import { KeyType, KeysListType } from "../types";
 import Keys from "./Keys";
 import Plugs from "./Plugs";
 import Rotors from "./Rotors";
 
-interface EnigmaProps{
-    currentKey: string;
-}
-
 const Enigma = () => {
-    const [keyAndPlug, setKeyPlug] = useState<Array<any>>(KeysList)
+    const [keyAndPlug, setKeyPlug] = useState<Array<KeysListType>>(KeysList)
     const [currentKey, setCurrentKey] = useState<string>('')
     const [rotorKeys, setRotorKeys] = useState<Array<string>>(RotorKeys)
-    const [rotorOne, setRotorOne] = useState<any>(RotorOne)
-    const [rotorTwo, setRotorTwo] = useState<any>(RotorTwo)
-    const [rotorThree, setRotorThree] = useState<any>(RotorThree)
+    const [rotorOne, setRotorOne] = useState<KeyType>(RotorOne)
+    const [rotorTwo, setRotorTwo] = useState<KeyType>(RotorTwo)
+    const [rotorThree, setRotorThree] = useState<KeyType>(RotorThree)
     const [isFirst, setFirst] = useState<boolean>(true)
 
-    const keyDown = (event:any) => {
+    const keyDown = (event: KeyboardEvent) => {
         onClick(event)
     }
 
-    const keyUp = (event:any) => {
+    const keyUp = (event: KeyboardEvent) => {
         setCurrentKey('')
     }
 
-    const handleRotateRotor = (rotor:any, setter:any) => {
+    const handleRotateRotor = (rotor: KeyType, setter:(value: KeyType) => void) => {
         const tempRotor = JSON.parse(JSON.stringify(rotor))
-        Object.keys(tempRotor)?.forEach((key:any) => tempRotor[key] = NextKeys[tempRotor[key]])
+        Object.keys(tempRotor)?.forEach((key: string) => tempRotor[key] = NextKeys[tempRotor[key]])
         setter(tempRotor)
     }
 
@@ -50,8 +47,8 @@ const Enigma = () => {
         if(rotorKeys?.[0] === 'Z'){
             setRotorKeys((prev:any) => {
                 const temp = JSON.parse(JSON.stringify(prev))
-                temp[2] = NextKeys[rotorKeys?.[2]]//NextKeys[RotorThree[rotorKeys?.[2]]]
-                temp[0] = NextKeys[rotorKeys?.[0]]//NextKeys[RotorOne[rotorKeys?.[0]]]
+                temp[2] = NextKeys[rotorKeys?.[2]]
+                temp[0] = NextKeys[rotorKeys?.[0]]
                 return temp
             })
             handleRotateRotor(rotorThree, setRotorThree)
@@ -61,8 +58,8 @@ const Enigma = () => {
             alreadyEntered = true
             setRotorKeys((prev:any) => {
                 const temp = JSON.parse(JSON.stringify(prev))
-                temp[0] = NextKeys[rotorKeys?.[0]]//NextKeys[RotorOne[rotorKeys?.[0]]]
-                temp[1] = NextKeys[rotorKeys?.[1]]//NextKeys[RotorTwo[rotorKeys?.[1]]]
+                temp[0] = NextKeys[rotorKeys?.[0]]
+                temp[1] = NextKeys[rotorKeys?.[1]]
                 return temp
             })
             handleRotateRotor(rotorOne, setRotorOne)
@@ -71,8 +68,8 @@ const Enigma = () => {
         if(rotorKeys?.[2] === 'Z'){
             setRotorKeys((prev:any) => {
                 const temp = JSON.parse(JSON.stringify(prev))
-                if(!alreadyEntered) temp[1] = NextKeys[rotorKeys?.[1]]//NextKeys[RotorTwo[rotorKeys?.[1]]]
-                temp[2] = NextKeys[rotorKeys?.[2]]//NextKeys[RotorThree[rotorKeys?.[2]]]
+                if(!alreadyEntered) temp[1] = NextKeys[rotorKeys?.[1]]
+                temp[2] = NextKeys[rotorKeys?.[2]]
                 return temp
             })
             if(!alreadyEntered) handleRotateRotor(rotorTwo, setRotorTwo)
@@ -80,7 +77,7 @@ const Enigma = () => {
         }else{
             setRotorKeys((prev:any) => {
                 const temp = JSON.parse(JSON.stringify(prev))
-                temp[2] = NextKeys[rotorKeys?.[2]]//NextKeys[RotorThree[rotorKeys?.[2]]]
+                temp[2] = NextKeys[rotorKeys?.[2]]
                 return temp
             })
             handleRotateRotor(rotorThree, setRotorThree)

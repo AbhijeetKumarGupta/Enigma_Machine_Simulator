@@ -1,4 +1,6 @@
-export const KeysList = [
+import { KeyIndexType, KeyType, KeysListType } from "./types"
+
+export const KeysList: Array<KeysListType> = [
     {
         key: 'A',
         connected: '',
@@ -131,7 +133,7 @@ export const KeysList = [
     }
 ]
 
-export const ColorCodes:any = {
+export const ColorCodes: KeyType = {
     A : '#4863A0',
     B : '#2B547E',
     C : '#36454F',
@@ -160,7 +162,7 @@ export const ColorCodes:any = {
     Z : '#6A0DAD'
 }
 
-export const KeyIndex:any = {
+export const KeyIndex: KeyIndexType = {
     A : 0,
     B : 1,
     C : 2,
@@ -189,7 +191,7 @@ export const KeyIndex:any = {
     Z : 25
 }
 
-export const RotorOne:any = {
+export const RotorOne: KeyType = {
     A : 'A',
     B : 'B',
     C : 'C',
@@ -218,7 +220,7 @@ export const RotorOne:any = {
     Z : 'Z' 
 }
 
-export const RotorTwo:any = {
+export const RotorTwo: KeyType = {
     A : 'C',
     B : 'D',
     C : 'E',
@@ -247,7 +249,7 @@ export const RotorTwo:any = {
     Z : 'B'
 }
 
-export const RotorThree:any = {
+export const RotorThree: KeyType = {
     A : 'E',
     B : 'F',
     C : 'G',
@@ -276,7 +278,7 @@ export const RotorThree:any = {
     Z : 'D'
 }
 
-export const StaticWheel:any = {
+export const StaticWheel: KeyType = {
     A : 'G',
     B : 'H',
     C : 'I',
@@ -305,13 +307,13 @@ export const StaticWheel:any = {
     Z : 'F'
 }
 
-export const RotorKeys = [
+export const RotorKeys: Array<string> = [
     'T',
     'R',
     'N'
 ]
 
-export const NextKeys:any = {
+export const NextKeys: KeyType = {
     A : 'B',
     B : 'C',
     C : 'D',
@@ -340,7 +342,7 @@ export const NextKeys:any = {
     Z : 'A'
 }
 
-export const PrevKeys:any = {
+export const PrevKeys: KeyType = {
     A : 'Z',
     B : 'A',
     C : 'B',
@@ -369,7 +371,7 @@ export const PrevKeys:any = {
     Z : 'Y'
 }
 
-export const Alphabets = [
+export const Alphabets: Array<string> = [
     'A',
     'B',
     'C',

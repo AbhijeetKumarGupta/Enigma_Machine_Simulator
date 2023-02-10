@@ -1,17 +1,18 @@
 import Key from "../../Components/Key";
 import { RotorOne, RotorThree, RotorTwo, StaticWheel } from "../../helper";
 import { H2, Wrapper } from "../../style";
+import { KeysListType } from "../../types";
 
 interface PlugsProps{
     currentKey: string;
-    KeysList: Array<any>;
+    KeysList: Array<KeysListType>;
 }
 
 const Keys = (props: PlugsProps) => {
     const {currentKey, KeysList} = props
 
     const passThroughRotor = (key: string) => {
-        let outputKey;
+        let outputKey:string;
         outputKey = StaticWheel?.[key]
         outputKey = RotorThree?.[outputKey]
         outputKey = RotorTwo?.[outputKey]
@@ -19,14 +20,14 @@ const Keys = (props: PlugsProps) => {
         return outputKey
     }
 
-    const cur = KeysList?.find((key:any) => key?.key === currentKey)
+    const cur = KeysList?.find((key: KeysListType) => key?.key === currentKey)
 
     return (
         <>
             <H2>LAMPS</H2>
             <Wrapper>
             {
-                KeysList?.map((key:any, index:number) => {
+                KeysList?.map((key: KeysListType, index: number) => {
                     let curKey;
                     if(cur?.connected){
                         curKey = cur?.connected

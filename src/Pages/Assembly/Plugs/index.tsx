@@ -2,10 +2,11 @@ import { useState } from "react";
 import Plug from "../../Components/Plug";
 import { ColorCodes, KeyIndex } from "../../helper";
 import { H2, Wrapper } from "../../style";
+import { KeysListType } from "../../types";
 
 interface PlugsProps{
-    plugs: Array<any>;
-    setPlugs: any;
+    plugs: Array<KeysListType>;
+    setPlugs: (value:any) => void;
 }
 
 const Plugs = (props: PlugsProps) => {
@@ -43,7 +44,7 @@ const Plugs = (props: PlugsProps) => {
             <H2>PLUGS</H2>
             <Wrapper>
             {
-                plugs?.map((key:any, index:number) => 
+                plugs?.map((key: KeysListType, index: number) => 
                     <Plug 
                         key={index} 
                         thisPlug={key?.key} 
@@ -54,7 +55,7 @@ const Plugs = (props: PlugsProps) => {
                                 ColorCodes[key?.connected] : 
                                 ColorCodes[key?.key]
                             ) :
-                            null 
+                            '' 
                         } 
                         onClick={() => handlePlug(key?.key)}
                     />
