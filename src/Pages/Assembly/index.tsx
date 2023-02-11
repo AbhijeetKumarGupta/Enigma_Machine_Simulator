@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Alphabets, KeysList, NextKeys, RotorKeys, RotorOne, RotorThree, RotorTwo } from "../helper";
+import { Alphabets, KeysList, NextKeys, RotorEncryptionKeys, RotorDecryptionKeys, RotorOne, RotorThree, RotorTwo } from "../helper";
+import { EncDecControllButton } from "../style";
 import { KeyType, KeysListType } from "../types";
 import Keys from "./Keys";
 import Plugs from "./Plugs";
@@ -8,11 +9,16 @@ import Rotors from "./Rotors";
 const Enigma = () => {
     const [keyAndPlug, setKeyPlug] = useState<Array<KeysListType>>(KeysList)
     const [currentKey, setCurrentKey] = useState<string>('')
-    const [rotorKeys, setRotorKeys] = useState<Array<string>>(RotorKeys)
+    const [rotorKeys, setRotorKeys] = useState<Array<string>>(RotorEncryptionKeys)
     const [rotorOne, setRotorOne] = useState<KeyType>(RotorOne)
     const [rotorTwo, setRotorTwo] = useState<KeyType>(RotorTwo)
     const [rotorThree, setRotorThree] = useState<KeyType>(RotorThree)
     const [isFirst, setFirst] = useState<boolean>(true)
+    const [isDecryption, setIsDecryption] = useState<boolean>(false)
+
+    useEffect(()=>{
+        setRotorKeys(isDecryption ? RotorDecryptionKeys : RotorEncryptionKeys)
+    },[isDecryption])
 
     const keyDown = (event: KeyboardEvent) => {
         onClick(event)
@@ -31,7 +37,7 @@ const Enigma = () => {
     const onClick = (event: KeyboardEvent) => {
         if(Alphabets.includes(event?.key?.toUpperCase())){
             setCurrentKey(event?.key?.toUpperCase());  
-            handleRotate()
+            setTimeout(()=>handleRotate(),500)
         }
         if(isFirst){
             setFirst(false)
@@ -98,8 +104,9 @@ const Enigma = () => {
         
     return (
         <>
+            <EncDecControllButton onClick={() => setIsDecryption((prev: boolean) => !prev)}>{isDecryption ? 'Encrypt' : 'Decrypt'}</EncDecControllButton>
             <Rotors rotorKeys={rotorKeys}/>
-            <Keys rotorOne={rotorOne} rotorTwo={rotorTwo} rotorThree={rotorThree} currentKey={currentKey} KeysList={keyAndPlug}/>
+            <Keys isDecryption={isDecryption} rotorOne={rotorOne} rotorTwo={rotorTwo} rotorThree={rotorThree} currentKey={currentKey} KeysList={keyAndPlug}/>
             <Plugs plugs={keyAndPlug} setPlugs={setKeyPlug}/>
         </>
     )

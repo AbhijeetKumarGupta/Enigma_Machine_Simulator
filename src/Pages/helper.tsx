@@ -307,10 +307,16 @@ export const StaticWheel: KeyType = {
     Z : 'F'
 }
 
-export const RotorKeys: Array<string> = [
+export const RotorEncryptionKeys: Array<string> = [
     'T',
     'R',
     'N'
+]
+
+export const RotorDecryptionKeys: Array<string> = [
+    'N',
+    'R',
+    'T'
 ]
 
 export const NextKeys: KeyType = {
