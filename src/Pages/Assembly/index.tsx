@@ -84,7 +84,7 @@ const Enigma = () => {
         }
     }
 
-    const handleEvent = () => {
+    useEffect(() => {
         if(!currentKey){
             document.body.addEventListener('keydown', keyDown);
             document.body.addEventListener('keyup', keyUp);
@@ -93,10 +93,7 @@ const Enigma = () => {
             document.body.addEventListener('keydown', keyDown);
             document.body.addEventListener('keyup', keyUp);
         };
-    }
-
-    useEffect(() => {
-        handleEvent()
+     // eslint-disable-next-line
     },[currentKey])
         
     return (
