@@ -99,7 +99,7 @@ const Enigma = () => {
     return (
         <>
             <Rotors rotorKeys={rotorKeys}/>
-            <Keys currentKey={currentKey} KeysList={keyAndPlug}/>
+            <Keys rotorOne={rotorOne} rotorTwo={rotorTwo} rotorThree={rotorThree} currentKey={currentKey} KeysList={keyAndPlug}/>
             <Plugs plugs={keyAndPlug} setPlugs={setKeyPlug}/>
         </>
     )

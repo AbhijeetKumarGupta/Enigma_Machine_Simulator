@@ -1,22 +1,25 @@
 import Key from "../../Components/Key";
-import { RotorOne, RotorThree, RotorTwo, StaticWheel } from "../../helper";
+import { StaticWheel } from "../../helper";
 import { H2, Wrapper } from "../../style";
 import { KeysListType } from "../../types";
 
 interface PlugsProps{
     currentKey: string;
     KeysList: Array<KeysListType>;
+    rotorOne: any;
+    rotorTwo: any;
+    rotorThree: any;
 }
 
 const Keys = (props: PlugsProps) => {
-    const {currentKey, KeysList} = props
+    const {currentKey, KeysList, rotorOne, rotorTwo, rotorThree} = props
 
     const passThroughRotor = (key: string) => {
         let outputKey:string;
         outputKey = StaticWheel?.[key]
-        outputKey = RotorThree?.[outputKey]
-        outputKey = RotorTwo?.[outputKey]
-        outputKey = RotorOne?.[outputKey]
+        outputKey = rotorThree?.[outputKey]
+        outputKey = rotorTwo?.[outputKey]
+        outputKey = rotorOne?.[outputKey]
         return outputKey
     }
 
