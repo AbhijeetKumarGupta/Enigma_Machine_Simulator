@@ -27,5 +27,5 @@ export const EncDecControllButton = styled.button`
     font-size: 20px;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin: 10px;
 `
