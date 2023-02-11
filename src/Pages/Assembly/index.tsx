@@ -84,7 +84,7 @@ const Enigma = () => {
         }
     }
 
-    useEffect(() => {
+    const handleEvent = () => {
         if(!currentKey){
             document.body.addEventListener('keydown', keyDown);
             document.body.addEventListener('keyup', keyUp);
@@ -93,7 +93,11 @@ const Enigma = () => {
             document.body.addEventListener('keydown', keyDown);
             document.body.addEventListener('keyup', keyUp);
         };
-    },[currentKey, keyDown, keyUp])
+    }
+
+    useEffect(() => {
+        handleEvent()
+    },[currentKey])
         
     return (
         <>
