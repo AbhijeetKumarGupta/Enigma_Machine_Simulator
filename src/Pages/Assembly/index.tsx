@@ -93,7 +93,7 @@ const Enigma = () => {
             document.body.addEventListener('keydown', keyDown);
             document.body.addEventListener('keyup', keyUp);
         };
-    },[currentKey])
+    },[currentKey, keyDown, keyUp])
         
     return (
         <>
